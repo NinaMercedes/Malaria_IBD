@@ -1,5 +1,5 @@
 # Malaria_IBD
-This is a repo for IBD analysis tutorial
+This is a repo for IBD analysis tutorial using isoRelate
 
 ## Installation
 To install create the following conda environment. 
@@ -9,9 +9,12 @@ conda activate ibdtools
 conda install R
 conda install plink2
 conda install vcftools
+conda install conda-forge::r-dplyr
 ## open R
-install.packages("remotes")
-remotes::install_github("bahlolab/isoRelate")
+devtools::install_github("bahlolab/isoRelate")
+install.packages("BiocManager")
+BiocManager::install("bahlolab/moimix", build_vignettes = TRUE)
+
 ```
 ## Input Data
 To start you will need your merged and filtered binary multi-sample vcf. You will then need to generate a chromosome list.. see below.
