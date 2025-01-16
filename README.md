@@ -17,14 +17,9 @@ BiocManager::install("bahlolab/moimix", build_vignettes = TRUE)
 
 ```
 ## Input Data
-To start you will need your merged and filtered binary multi-sample vcf. You will then need to generate a chromosome list.. see below.
+To start you will need your merged and filtered binary multi-sample vcf. You will then need to split metadata according to each population of interest. Ignore this step if you have only one population in your vcf already. 
 ```
-bcftools query -f '%CHROM\n your.vcf.gz > chrom_list.txt
-awk -i '!x[$0]++' chrom_list.txt > chromosomes.txt
-## Open R
-chrom <- read.table("chromosomes.txt", header=FALSE)
-chrom$V2 <- 1:nrow(chrom)
-write.table(chrom, "chrom_map.txt", row.names=FALSE, quote=FALSE, col.names=FALSE)
+Rscript "/mnt/storage13/nbillows/Pop_Gen/master/split_meta2.R" --suffix pf_year --metadata recurated_pf_metadata.tsv --population grouping --wgs_id wgs_id
 ```
 
 ## Make MAP and PED file
